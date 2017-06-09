@@ -12,12 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170608194401) do
 
-  create_table "activities", force: :cascade do |t|
-    t.string   "activity_name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
   create_table "destinations", force: :cascade do |t|
     t.string   "city"
     t.string   "country"
@@ -30,13 +24,6 @@ ActiveRecord::Schema.define(version: 20170608194401) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "itineraries", force: :cascade do |t|
-    t.integer  "activity_id"
-    t.integer  "destination_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
   create_table "photos", force: :cascade do |t|
     t.integer  "destination_id"
     t.integer  "photographer_id"
@@ -44,13 +31,6 @@ ActiveRecord::Schema.define(version: 20170608194401) do
     t.string   "image"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-  end
-
-  create_table "preferences", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "activity_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "reviews", force: :cascade do |t|

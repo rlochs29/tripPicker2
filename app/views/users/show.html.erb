@@ -13,19 +13,19 @@
         Climate
       </label>
 
-      <%= select_tag(:desired_climate, options_from_collection_for_select(Destination.all, :climate, :climate),:prompt => "Choose Desired Climate", :class => "form-control") %>
+      <%= select_tag(:desired_climate, options_from_collection_for_select(Destination.all.to_a.uniq { |o| o.climate}, :climate, :climate),:prompt => "Choose Desired Climate", :class => "form-control") %>
 
       <label for="desired_scenery" class="control-label">
         Scenery
       </label>
 
-      <%= select_tag(:desired_scenery, options_from_collection_for_select(Destination.all, :scenery, :scenery),:prompt => "Choose Desired Scenery", :class => "form-control") %>
+      <%= select_tag(:desired_scenery, options_from_collection_for_select(Destination.all.to_a.uniq { |o| o.scenery}, :scenery, :scenery),:prompt => "Choose Desired Scenery", :class => "form-control") %>
 
       <label for="desired_distance" class="control-label">
         Distance
       </label>
 
-      <%= select_tag(:desired_distance, options_from_collection_for_select(Destination.all.uniq, :distance, :distance),:prompt => "Choose Desired Distance", :class => "form-control", ) %>
+      <%= select_tag(:desired_distance, options_from_collection_for_select(Destination.all.to_a.uniq { |o| o.distance}, :distance, :distance),:prompt => "Choose Desired Distance", :class => "form-control", ) %>
     </div>
 
     <button class="btn btn-success">

@@ -25,7 +25,7 @@
             <td><%= destination.city %></td>
             <td><%= destination.country %></td>
             <td><%= destination.description %></td>
-            <!-- <td><%= destination.photos(1) %></td> -->
+            <td> <img src= "<%= (destination.photos.sample).image %>" height ="200" width = "300"> </td>
             <td>
               <a href="/destinations/<%= destination.id %>" class="btn btn-primary">Show</a>
             </td>

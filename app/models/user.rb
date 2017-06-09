@@ -9,4 +9,7 @@ class User < ApplicationRecord
 
   has_many :preferences, :dependent => :destroy
   has_many :activities, :through => :preferences, :source => :activity
+
+  validates :first_name,:last_name, presence: true, uniqueness: {scope: :email}
+
 end
