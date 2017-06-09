@@ -1,0 +1,59 @@
+<div class="page-header">
+  <h3>User : <%= @user.first_name %> <%= @user.last_name %></h3>
+<h4>Hometown: <%=@user.hometown%></h4>
+</div>
+
+<div class="row">
+  <form action="/update_user">
+    <!-- Hidden input for authenticity token to protect from forgery -->
+
+    <!-- Label and input for city -->
+    <div class="form-group">
+      <label for="desired_climate" class="control-label">
+        Climate
+      </label>
+
+      <%= select_tag(:desired_climate, options_from_collection_for_select(Destination.all, :climate, :climate),:prompt => "Choose Desired Climate", :class => "form-control") %>
+
+      <label for="desired_scenery" class="control-label">
+        Scenery
+      </label>
+
+      <%= select_tag(:desired_scenery, options_from_collection_for_select(Destination.all, :scenery, :scenery),:prompt => "Choose Desired Scenery", :class => "form-control") %>
+
+      <label for="desired_distance" class="control-label">
+        Distance
+      </label>
+
+      <%= select_tag(:desired_distance, options_from_collection_for_select(Destination.all.uniq, :distance, :distance),:prompt => "Choose Desired Distance", :class => "form-control", ) %>
+    </div>
+
+    <button class="btn btn-success">
+      Find Destinations
+    </button>
+    or
+    <a href="/destinations">Show All Destinations</a>
+  </form>
+  </div>
+  <br>
+
+  <div class="row">
+    <h4><%=@user.first_name%>'s Photos</h4>
+    <%((@user.photos).all).each do |photo|%>
+      <div class="col-md-3">
+          <img src="<%=photo.image%>" height="200" width="300">
+      </div>
+    <%end%>
+  </div>
+
+  <div class="row">
+    <h4><%=@user.first_name%>'s Reviews</h4>
+    <%((@user.reviews).all).each do |review|%>
+      <h6>Destination: <%=(Destination.find(review.destination_id)).city%></h6>
+      <h6>Rating: <%=review.rating%></h6>
+      <p><%=review.body%></p>
+      <br>
+    <%end%>
+
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @photo.errors.any? %>
+  <% @photo.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Photo</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_photo" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for destination_id -->
+      <div class="form-group">
+        <!-- <label for="destination_id" class="control-label">
+          Destination
+        </label> -->
+
+        <input type="hidden" id="destination_id" name="destination_id" placeholder="" class="form-control" value="<%= @destination_id %>">
+      </div>
+
+      <!-- Label and input for photographer_id -->
+      <div class="form-group">
+        <!-- <label for="photographer_id" class="control-label">
+          Photographer
+        </label> -->
+
+        <input type="hidden" id="photographer_id" name="photographer_id" placeholder="Photographer" class="form-control" value="<%= current_user.id %>">
+      </div>
+
+      <!-- Label and input for caption -->
+      <div class="form-group">
+        <label for="caption" class="control-label">
+          Caption
+        </label>
+
+        <textarea id="caption" name="caption" placeholder="Caption" class="form-control" rows="3"><%= @photo.caption %></textarea>
+      </div>
+
+      <!-- Label and input for image -->
+      <div class="form-group">
+        <label for="image" class="control-label">
+          Image URL
+        </label>
+
+        <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @photo.image %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Photo
+      </button>
+      or
+      <a href="/photos">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<!-- Validation failure messages -->
+<% if @review.errors.any? %>
+  <% @review.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Review</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_review" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <!-- <label for="user_id" class="control-label">
+          User
+        </label> -->
+
+        <input type="hidden" id="user_id" name="user_id" placeholder="" class="form-control" value="<%= current_user.id %>" disabled="disabled">
+      </div>
+
+      <!-- Label and input for rating -->
+      <div class="form-group">
+        <label for="rating" class="control-label">
+          Rating
+        </label>
+
+        <%= select_tag(:rating, options_for_select([5,4,3,2,1]),:prompt => "Rate this destination", :class => "form-control") %>
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @review.body %></textarea>
+      </div>
+
+      <!-- Label and input for destination_id -->
+      <div class="form-group">
+        <!-- <label for="destination_id" class="control-label">
+          Destination
+        </label> -->
+
+        <input type="hidden" id="destination_id" name="destination_id" placeholder="" class="form-control" value="<%= @destination_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Review
+      </button>
+      or
+      <a href="/destinations/<%=@destination_id%>">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<!-- Validation failure messages -->
+<% if @destination.errors.any? %>
+  <% @destination.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Destination</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_destination" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for city -->
+      <div class="form-group">
+        <label for="city" class="control-label">
+          City
+        </label>
+
+        <input type="text" id="city" name="city" placeholder="City" class="form-control" value="<%= @destination.city %>">
+      </div>
+
+      <!-- Label and input for country -->
+      <div class="form-group">
+        <label for="country" class="control-label">
+          Country
+        </label>
+
+        <input type="text" id="country" name="country" placeholder="Country" class="form-control" value="<%= @destination.country %>">
+      </div>
+
+      <!-- Label and input for climate -->
+      <div class="form-group">
+        <label for="climate" class="control-label">
+          Climate
+        </label>
+
+        <input type="text" id="climate" name="climate" placeholder="Climate" class="form-control" value="<%= @destination.climate %>">
+      </div>
+
+      <!-- Label and input for scenery -->
+      <div class="form-group">
+        <label for="scenery" class="control-label">
+          Scenery
+        </label>
+
+        <input type="text" id="scenery" name="scenery" placeholder="Scenery" class="form-control" value="<%= @destination.scenery %>">
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @destination.description %></textarea>
+      </div>
+
+      <!-- Label and input for distance -->
+      <div class="form-group">
+        <label for="distance" class="control-label">
+          Distance
+        </label>
+
+        <input type="text" id="distance" name="distance" placeholder="Distance" class="form-control" value="<%= @destination.distance %>">
+      </div>
+
+      <!-- Label and input for activities -->
+      <div class="form-group">
+        <label for="activities" class="control-label">
+          Activities
+        </label>
+
+        <input type="string" id="activities" name="activities" placeholder="Activities" class="form-control" value="<%= @destination.activities %>">
+
+        <!-- <input type="text" id="activities" name="activities" placeholder="Activities" class="form-control" value="<%= @destination.activities %>"> -->
+      </div>
+
+      <button class="btn btn-success">
+        Create Destination
+      </button>
+      or
+      <a href="/destinations">Cancel</a>
+    </form>
+  </div>
+</div>

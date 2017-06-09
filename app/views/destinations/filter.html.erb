@@ -1,0 +1,42 @@
+<div class="page-header">
+  <h1>
+    Destinations for You
+  </h1>
+  <h4>Climate: <%=@climate%></h4>
+  <h4>Scenery: <%=@scenery%></h4>
+  <h4>Distance: <%=@distance%></h4>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>City</th>
+        <th>Country</th>
+        <th>Description</th>
+        <th>Photo</th>
+      </tr>
+
+      <%count = 0%>
+
+      <% @destinations.each do |destination| %>
+        <%if destination.climate == @climate && destination.scenery == @scenery && destination.distance == @distance%>
+          <tr>
+            <td><%= destination.city %></td>
+            <td><%= destination.country %></td>
+            <td><%= destination.description %></td>
+            <!-- <td><%= destination.photos(1) %></td> -->
+            <td>
+              <a href="/destinations/<%= destination.id %>" class="btn btn-primary">Show</a>
+            </td>
+          </tr>
+          <%count = count+1%>
+        <%end%>
+
+      <% end %>
+      <%if count == 0%>
+        <h4>There are no destinations matching your preferences. Please try choosing a different set of options.</h4>
+      <%end%>
+    </table>
+  </div>
+</div>

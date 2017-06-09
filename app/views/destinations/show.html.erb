@@ -1,0 +1,63 @@
+<div class="page-header">
+  <h3>Destination #<%= @destination.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>City</dt>
+      <dd><%= @destination.city %></dd>
+
+      <dt>Country</dt>
+      <dd><%= @destination.country %></dd>
+
+      <dt>Climate</dt>
+      <dd><%= @destination.climate %></dd>
+
+      <dt>Scenery</dt>
+      <dd><%= @destination.scenery %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @destination.description %></dd>
+
+      <dt>Distance</dt>
+      <dd><%= @destination.distance %></dd>
+
+      <dt>Activities</dt>
+      <dd><%= @destination.activities %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/destinations" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/new_review/<%=@destination.id%>" class="btn btn-warning">
+        Review
+      </a>
+      <a href="/new_photo/<%=@destination.id%>" class="btn btn-secondary">
+        Add Photo
+      </a>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <h4>Photos</h4>
+    <%((@destination.photos).all).each do |photo|%>
+      <div class="col-md-3">
+          <img src="<%=photo.image%>" height="200" width="300">
+      </div>
+    <%end%>
+
+  </div>
+
+  <div class="row">
+    <h4>Reviews</h4>
+    <%((@destination.reviews).all).each do |review|%>
+      <h6>Rating: <%=review.rating%></h6>
+      <p><%=review.body%></p>
+    <%end%>
+
+  </div>
+</div>
